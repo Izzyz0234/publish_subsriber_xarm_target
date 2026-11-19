@@ -1,8 +1,10 @@
-import rclpy, pygame, xarm
+import rclpy, pygame, xarm, re
 from rclpy.node import Node
 
 from std_msgs.msg import String
 
+arm = xarm.Controller('USB')
+basePosition = [[1, 300], [2, 500,], [3, 700], [4, 200], [5, 300], [6, 500]]
 
 class MinimalSubscriber(Node):
 
@@ -16,10 +18,16 @@ class MinimalSubscriber(Node):
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
-        self.get_logger().info('I heard: "%s"' % msg.data)
+        position = eval(msg.data)
+        self.get_logger().info(msg.data)
+        # result = re.sub(r'^\[|\]$', '', position)
+        # self.get_logger().info(result)
+        arm.setPosition(position)
+        # self.get_logger().info('I heard: "%s"' % position)
 
 
 def main(args=None):
+
     rclpy.init(args=args)
 
     minimal_subscriber = MinimalSubscriber()
