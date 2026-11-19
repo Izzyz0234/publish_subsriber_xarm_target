@@ -90,7 +90,9 @@ class MinimalPublisher(Node):
                     print("clicked at", event.pos)     # ← this is your (x, y)
                     positionX = event.pos[0]
                     positionY = event.pos[1]
-                    xarmMsg.data = f'[[6, {positionX}], [4, {positionY}]]'
+                    xarmX = round(positionX * 1000 / (screen.get_width() - 1))
+                    xarmY = round(positionY * 1000 / (screen.get_height() - 1))
+                    xarmMsg.data = f'[[6, {xarmX}], [4, {xarmY}]]'
 
                     check_pixel_color(positionX, positionY)                    
                     

@@ -1,10 +1,11 @@
+from turtle import position
+
 import rclpy, pygame, xarm, re
 from rclpy.node import Node
 
 from std_msgs.msg import String
 
 arm = xarm.Controller('USB')
-basePosition = [[1, 300], [2, 500,], [3, 700], [4, 200], [5, 300], [6, 500]]
 
 class MinimalSubscriber(Node):
 
@@ -23,7 +24,9 @@ class MinimalSubscriber(Node):
         # result = re.sub(r'^\[|\]$', '', position)
         # self.get_logger().info(result)
         arm.setPosition(position)
-        # self.get_logger().info('I heard: "%s"' % position)
+        position2 = [[5, 300]]  # Replace 300 with a safe target for your arm
+        arm.setPosition(position2)
+        self.get_logger().info('I heard: "%s"' % position)
 
 
 def main(args=None):
