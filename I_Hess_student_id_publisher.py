@@ -1,8 +1,11 @@
-import rclpy, random
+import rclpy, random, pygame, xarm
 from rclpy.node import Node
+
 
 from std_msgs.msg import String
 
+
+basePosition = '[[1, 500], [2, 500,], [3, 500], [4, 500], [5, 500], [6, 500]]'
 
 
 class MinimalPublisher(Node):
@@ -21,18 +24,24 @@ class MinimalPublisher(Node):
         self.numbers += [random_number]
         self.average_number = sum(self.numbers) / len(self.numbers)
 
-        msg = String()
-        msg2 = String()
-        msg3 = String()
-        msg.data = 'STUD_9369:%d' % random_number
-        msg2.data = 'Message Count:%d' % self.message_count 
-        msg3.data = 'Average Number:%d' % self.average_number
-        self.publisher_.publish(msg)
-        self.publisher_.publish(msg2)
-        self.publisher_.publish(msg3)
-        self.get_logger().info('1 Publishing: "%s"' % msg.data)
-        self.get_logger().info('2 Publishing: "%s"' % msg2.data)
-        self.get_logger().info('3 Publishing: "%s"' % msg3.data)
+        xarmMsg = String()
+        xarmMsg.data = basePosition
+        self.publisher_.publish(xarmMsg)
+        self.get_logger().info('Publishing to Xarm: "%s"' % xarmMsg.data)
+
+
+        # msg = String()
+        # msg2 = String()
+        # msg3 = String()
+        # msg.data = 'STUD_9369:%d' % random_number
+        # msg2.data = 'Message Count:%d' % self.message_count 
+        # msg3.data = 'Average Number:%d' % self.average_number
+        # self.publisher_.publish(msg)
+        # self.publisher_.publish(msg2)
+        # self.publisher_.publish(msg3)
+        # self.get_logger().info('1 Publishing: "%s"' % msg.data)
+        # self.get_logger().info('2 Publishing: "%s"' % msg2.data)
+        # self.get_logger().info('3 Publishing: "%s"' % msg3.data)
         
         self.message_count += 1
 
