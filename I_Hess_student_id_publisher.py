@@ -28,25 +28,26 @@ def check_pixel_color(x, y):
     global score_counter
     # Get the color of the pixel at (x, y)
     pixel_color = screen.get_at((x, y))
+    print(pixel_color)
     
     # Define the target color (red in this case)
-    white = (255, 255, 255, 255)
-    black = (0, 0, 0, 255)
-    blue = (104, 191, 233, 255)
-    red = (222, 18, 6, 255)
-    yellow = (255, 221, 0, 225)
+    white = (255, 255, 255)
+    black = (0, 0, 0)
+    blue = (104, 191, 233)
+    red = (222, 18, 6)
+    yellow = (255, 221, 0)
 
     
     # Check if the pixel color matches the target color
     if pixel_color == white:
         score_counter += 2
-    elif pixel_color == black:
+    if pixel_color == black:
         score_counter += 4
-    elif pixel_color == blue:
+    if pixel_color == blue:
         score_counter += 6
-    elif pixel_color == red:
+    if pixel_color == red:
         score_counter += 8
-    elif pixel_color == yellow:
+    if pixel_color == yellow:
         score_counter += 10
 
     # 3. Clear the screen so old text doesn't stay behind
