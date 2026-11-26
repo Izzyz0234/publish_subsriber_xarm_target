@@ -126,11 +126,10 @@ No xArm hardware is required for Pygame or message-format tests. Mock the `xarm.
 
 ## Demo
 
-Add a 20–30 second demonstration video here:
+Demonstration video:
 
-- **Demo video:** `[Add YouTube or repository video link]`
+- **Demo video:** [Xarm_demo_video.mov](Xarm_demo_video.mov)
 
-The demo should show the Pygame target, a mouse click, the `/student_data` message, and the xArm movement response.
 
 ## Licence
 MIT License
