@@ -5,7 +5,7 @@ This package has a publisher and subscriber code that sends sigals using WSL/Lun
 
 ## Overview
 UML class diagram
-![alt text](UML_class_diagram.png)
+![UML class diagram](images/UML_class_diagram.png)
 
 ## Coordinate and message format
 
@@ -119,16 +119,16 @@ Click a coloured area of the Pygame target. The publisher converts the click to 
 Run the available tests with:
 
 ```bash
-pytest -v
+python3 python/test.py
 ```
 
-No xArm hardware is required for Pygame or message-format tests. Mock the `xarm.Controller` object and patch Pygame where appropriate. Hardware testing can also be performed safely by echoing `/student_data` first and checking the generated coordinates before enabling `arm.setPosition()` calls.
+The tests mock Pygame, ROS 2, and xArm, so no hardware is required. Hardware testing can also be performed safely by echoing `/student_data` first and checking the generated coordinates before enabling `arm.setPosition()` calls.
 
 ## Demo
 
 Demonstration video:
 
-- **Demo video:** [Xarm_demo_video.mov](Xarm_demo_video.mov)
+- **Demo video:** [Xarm_demo_video.mov](videos/Xarm_demo_video.mov)
 
 
 ## Licence
