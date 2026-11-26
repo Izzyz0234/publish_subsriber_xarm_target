@@ -5,7 +5,7 @@ This package has a publisher and subscriber code that sends sigals using WSL/Lun
 
 ## Overview
 UML class diagram
-![alt text](image.png)
+![alt text](UML_class_diagram.png)
 
 ## Coordinate and message format
 
