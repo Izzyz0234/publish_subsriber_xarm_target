@@ -34,7 +34,7 @@ Channel `6` receives the horizontal coordinate and channel `4` receives the vert
 
 ## Prerequisites
 
-- Ubuntu 24.04 (native or in WSL2/VM) with **ROS 2 Jazzy** installed
+- A 64-bit Ubuntu virtual machine with **ROS 2 Jazzy** installed
 - Python 3 with `pip`, `colcon`, `setuptools`, Pygame, and HID support
 - An xArm HID device connected to the computer
 - A package layout containing the publisher and subscriber Python modules
