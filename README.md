@@ -3,6 +3,10 @@
 One-paragraph pitch: what it does, for whom.
 This package has a publisher and subscriber code that sends sigals using WSL/Lunix to a Xarm robot. The publisher has a pygame installed, when clicking a certain part of the screen it tracks points based on where you clicked on a archery target based on the colour clicked. The position is also recorder to then send a message to the subsriber that coverts the message into a motor movement for the robot then read to move to the position clicked. 
 
+## Overview
+UML class diagram
+![alt text](image.png)
+
 ## Coordinate and message format
 
 The Pygame window is 800 by 600 pixels. A click is converted as follows:

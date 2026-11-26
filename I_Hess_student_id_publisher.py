@@ -51,7 +51,7 @@ def check_pixel_color(x, y):
     white = (255, 255, 255)
     black = (0, 0, 0)
     blue = (104, 191, 233)
-    red = (222, 18, 6)
+    red = (225, 18, 6)
     yellow = (255, 221, 0)
 
     
@@ -109,7 +109,9 @@ class MinimalPublisher(Node):
                     positionY = event.pos[1]
                     xarmX = round(positionX * 1000 / (screen.get_width() - 1))
                     xarmY = round(positionY * 1000 / (screen.get_height() - 1))
-                    xarmMsg.data = f'[[6, {xarmX}], [4, {xarmY}]]'
+                    xarmXInverted = 1000 - xarmX
+                    xarmYInverted = 1000 - xarmY
+                    xarmMsg.data = f'[[6, {xarmXInverted}], [4, {xarmYInverted}]]'
 
                     check_pixel_color(positionX, positionY)                    
                     
