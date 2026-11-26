@@ -1,3 +1,11 @@
+"""Pygame target and ROS 2 publisher for xArm position commands.
+
+The application displays an archery target and publishes the mouse position,
+scaled to a 1000-by-1000 xArm coordinate space, whenever the target is clicked.
+Target-ring colours update a local score before the position is sent on
+``student_data`` as a ``std_msgs/String`` message.
+"""
+
 import rclpy, random, pygame, xarm
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -25,6 +33,15 @@ screen.blit(text_surface, text_rect)
 
 
 def check_pixel_color(x, y):
+    """Add points for a recognized target-ring pixel and refresh the score.
+
+    Args:
+        x: Horizontal mouse-coordinate in the Pygame window.
+        y: Vertical mouse-coordinate in the Pygame window.
+
+    Returns:
+        None. The global ``score_counter`` is updated in place.
+    """
     global score_counter
     # Get the color of the pixel at (x, y)
     pixel_color = screen.get_at((x, y))
