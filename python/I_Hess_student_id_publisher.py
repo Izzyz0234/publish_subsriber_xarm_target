@@ -7,7 +7,6 @@ Target-ring colours update a local score before the position is sent on
 """
 
 import rclpy, random, pygame, xarm
-from pathlib import Path
 from rclpy.node import Node
 from std_msgs.msg import String
 
@@ -21,8 +20,7 @@ screen = pygame.display.set_mode((800, 600))   # open an 800 × 600 window
 pygame.display.set_caption("Click a target")
 
 # Load and display the image
-image_path = Path(__file__).resolve().parent.parent / "images" / "archery_target2.png"
-image = pygame.image.load(str(image_path)).convert_alpha()
+image = pygame.image.load("archery_target2.png").convert_alpha()
 scaled_image = pygame.transform.scale(image, (600, 600))
 image_rect = image.get_rect(center=(320, 220))  # get the rectangle of the image and center it
 screen.blit(scaled_image, image_rect)
