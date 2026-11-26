@@ -58,6 +58,7 @@ class PublisherMessageTests(unittest.TestCase):
         click = SimpleNamespace(type="mouse-down", pos=position)
         quit_event = SimpleNamespace(type="quit")
         event_batches = [[click, quit_event]]
+        image_paths = []
 
         pygame = ModuleType("pygame")
         screen = FakeScreen()
@@ -69,7 +70,10 @@ class PublisherMessageTests(unittest.TestCase):
         pygame.quit = lambda: None
 
         pygame.display = SimpleNamespace(set_mode=lambda _size: screen, set_caption=lambda *_args: None, flip=lambda: None)
-        pygame.image = SimpleNamespace(load=lambda _path: SimpleNamespace(convert_alpha=lambda: SimpleNamespace(get_rect=lambda **_kwargs: object())))
+        pygame.image = SimpleNamespace(load=lambda path: (
+            image_paths.append(Path(path)) or
+            SimpleNamespace(convert_alpha=lambda: SimpleNamespace(get_rect=lambda **_kwargs: object()))
+        ))
         pygame.transform = SimpleNamespace(scale=lambda *_args: object())
         pygame.font = SimpleNamespace(Font=lambda *_args: FakeFont())
         pygame.event = SimpleNamespace(get=lambda: event_batches.pop(0))
@@ -100,6 +104,9 @@ class PublisherMessageTests(unittest.TestCase):
 
             try:
                 spec.loader.exec_module(module)
+                expected_image = PUBLISHER_PATH.parents[1] / "images" / "archery_target2.png"
+                self.assertEqual(image_paths, [expected_image])
+                self.assertTrue(image_paths[0].is_file())
                 publisher = module.MinimalPublisher()
                 publisher.timer_callback()
                 return [message.data for message in publisher.publisher_.messages]

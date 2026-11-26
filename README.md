@@ -23,7 +23,7 @@ Install the basic Ubuntu tools if they are not already present:
 
 ```bash
 sudo apt update
-sudo apt install python3-pip python3-venv python3-colcon-common-extensions usbutils
+sudo apt install python3-pip python3-venv python3.12-venv python3-yaml python3-colcon-common-extensions usbutils
 ```
 
 ### USB access
@@ -68,7 +68,10 @@ python3 -m venv --system-site-packages src/publish_subsriber_xarm_target/.venv
 source src/publish_subsriber_xarm_target/.venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install pygame xarm hidapi pytest
+python -c "import rclpy, yaml, pygame"
 ```
+
+The ROS Python modules come from the sourced Jazzy installation, while packages such as `yaml` may come from Ubuntu's system Python. The virtual environment must therefore be created with `--system-site-packages`. An existing venv created without that option will not see `/usr/lib/python3/dist-packages`; create the project venv above and use its interpreter. If an isolated venv is required instead, install `PyYAML` into that venv with pip.
 
 The ROS package manifest is `src/game_xarm_target_publisher_subscriber/package.xml`. Build and source the workspace:
 
@@ -76,6 +79,14 @@ The ROS package manifest is `src/game_xarm_target_publisher_subscriber/package.x
 colcon build --packages-select game_xarm_target_publisher_subscriber
 source install/setup.bash
 ```
+
+If an existing venv reports `ModuleNotFoundError: yaml`, it may be isolated from ROS's system Python packages. After sourcing Jazzy, check the system interpreter:
+
+```bash
+python3 -c "import rclpy, yaml, pygame"
+```
+
+In this workspace that check succeeds with `/usr/bin/python3`. Use it for the direct-script commands below, or create and activate the `--system-site-packages` venv above; do not use an older venv created without that option.
 
 **Current checkout limitation:** the ROS package has no installed console-script entry points, so `ros2 run ... click_publisher` and `ros2 run ... xarm_node` are not available. The publisher and subscriber source files are currently standalone scripts in `src/publish_subsriber_xarm_target/python/`; the commands below run those scripts directly. The old nested `python/setup.py` is not a working install for the ROS package.
 
@@ -86,20 +97,19 @@ Open three terminals. In each, source ROS and activate the environment from the 
 ```bash
 source /opt/ros/jazzy/setup.bash
 source install/setup.bash
-source src/publish_subsriber_xarm_target/.venv/bin/activate
 cd src/publish_subsriber_xarm_target
 ```
 
 Terminal 1 — start the Pygame publisher:
 
 ```bash
-python python/I_Hess_student_id_publisher.py
+/usr/bin/python3 python/I_Hess_student_id_publisher.py
 ```
 
 Terminal 2 — start the xArm subscriber **only after checking the USB device and safe workspace**:
 
 ```bash
-python python/I_Hess_student_id_subscriber.py
+/usr/bin/python3 python/I_Hess_student_id_subscriber.py
 ```
 
 Terminal 3 — inspect the graph and messages:
