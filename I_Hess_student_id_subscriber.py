@@ -1,4 +1,8 @@
-from turtle import position
+"""ROS 2 subscriber that forwards target positions to an xArm controller.
+
+The subscriber listens to ``student_data`` for a Python-literal list of
+[position-channel, target-position] pairs and sends it to the HID controller.
+"""
 
 import rclpy, pygame, xarm, re
 from rclpy.node import Node
@@ -19,6 +23,16 @@ class MinimalSubscriber(Node):
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
+        """Send a received target position to the xArm and reset channel 5.
+
+        Args:
+            msg: A ROS 2 ``std_msgs/String`` containing a Python-literal list
+                of ``[channel, position]`` pairs.
+
+        Warning:
+            ``eval`` executes Python syntax. Only accept trusted ROS 2 sources;
+            use ``ast.literal_eval`` for a safer implementation.
+        """
         position = eval(msg.data)
         self.get_logger().info(msg.data)
         # result = re.sub(r'^\[|\]$', '', position)
