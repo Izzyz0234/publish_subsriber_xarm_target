@@ -20,7 +20,7 @@ screen = pygame.display.set_mode((800, 600))   # open an 800 × 600 window
 pygame.display.set_caption("Click a target")
 
 # Load and display the image
-image = pygame.image.load("archery_target2.png").convert_alpha()
+image = pygame.image.load("images/archery_target2.png").convert_alpha()
 scaled_image = pygame.transform.scale(image, (600, 600))
 image_rect = image.get_rect(center=(320, 220))  # get the rectangle of the image and center it
 screen.blit(scaled_image, image_rect)

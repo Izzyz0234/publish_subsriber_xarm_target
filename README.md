@@ -1,10 +1,8 @@
 # <publish_subsriber_xarm_target>
-
-One-paragraph pitch: what it does, for whom.
 This package has a publisher and subscriber code that sends sigals using WSL/Lunix to a Xarm robot. The publisher has a pygame installed, when clicking a certain part of the screen it tracks points based on where you clicked on a archery target based on the colour clicked. The position is also recorder to then send a message to the subsriber that coverts the message into a motor movement for the robot then read to move to the position clicked. 
 
 ## Overview
-UML class diagram
+
 ![UML class diagram](images/UML_class_diagram.png)
 
 ## Coordinate and message format
@@ -12,14 +10,14 @@ UML class diagram
 The Pygame window is 800 by 600 pixels. A click is converted as follows:
 
 ```text
-xArm X = round(clicked_x * 1000 / 799)
-xArm Y = round(clicked_y * 1000 / 599)
+xarmX = round(positionX * 1000 / (screen.get_width() - 1))
+xarmY = round(positionY * 1000 / (screen.get_height() - 1))
 ```
 
 The resulting ROS 2 message is a string rather than a JSON or custom-message payload:
 
 ```text
-[[6, xArm_X], [4, xArm_Y]]
+[[6, xarmX], [4, xarmY]]
 ```
 
 Channel `6` receives the horizontal coordinate and channel `4` receives the vertical coordinate. The subscriber parses this value and calls `xArm.Controller.setPosition()`.
@@ -126,12 +124,11 @@ The tests mock Pygame, ROS 2, and xArm, so no hardware is required. Hardware tes
 
 ## Demo
 
-Demonstration video:
-
 - **Demo video:** [Xarm_demo_video.mov](videos/Xarm_demo_video.mov)
 
 
 ## Licence
+
 MIT License
 
 Copyright (c) [2026] [Isabella Hess]
