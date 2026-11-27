@@ -142,6 +142,10 @@ This checkout does not contain the requested `xarm_toolkit` package, `ArmControl
 
 The checked-in recording is [Xarm_demo_video.mov](videos/Xarm_demo_video.mov) (17.6 seconds by file metadata). It is shorter than the requested 20–30 seconds, and the repository does not establish that it records a complete, verified click-to-topic-to-physical-arm run.
 
+## Use of Generative AI
+
+I used Copilot to help with improving documentation, organizing file structure, helping with README.md and other .md files. I reviewed and adapted its suggestions rather than relying on them without checking. AI was used as a development aid. It is not part of the program’s runtime—the project uses Pygame input and ROS 2 messages to send target coordinates to the xArm. Only used for help with understanding, organizing, and documentation. 
+
 ## Licence
 
 The project is licensed under MIT; see [LICENSE](LICENSE). `pygame`, `xarm`, and `hidapi` are installed separately and are not vendored here. Their exact versions, licences, and maintenance status have not been recorded in the supplied Part A evaluation; check each package's metadata before redistribution.
