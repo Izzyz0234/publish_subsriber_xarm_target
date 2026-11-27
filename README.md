@@ -151,7 +151,7 @@ The checked-in recording is [Xarm_demo_video.mov](videos/Xarm_demo_video.mov) (1
 
 ## Use of Generative AI
 
-I used Copilot to help with improving documentation, organizing file structure, helping with .md files, and creating the "python -m venv .venv && source .venv/bin/activate pip install pdoc pdoc src/xarm_toolkit/" as pdoc wouldn't work. I reviewed and adapted its suggestions rather than relying on them without checking. AI was used as a development aid. It is not part of the program’s runtime—the project uses Pygame input and ROS 2 messages to send target coordinates to the xArm. 
+I used Copilot to help with improving documentation, organizing file structure, helping writing and formating .md files, and creating the "python -m venv .venv && source .venv/bin/activate pip install pdoc pdoc src/xarm_toolkit/" as pdoc wouldn't work. I reviewed and adapted its suggestions rather than relying on them without checking. AI was used as a development aid. It is not part of the program’s runtime—the project uses Pygame input and ROS 2 messages to send target coordinates to the xArm. 
 
 ## Licence
 
