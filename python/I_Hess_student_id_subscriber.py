@@ -9,7 +9,13 @@ from rclpy.node import Node
 
 from std_msgs.msg import String
 
-arm = xarm.Controller('USB')
+
+
+try:
+    arm = xarm.Controller('USB')
+except :
+#check if xarm.Controller('USB') works, if not raise error
+    raise Exception("xArm controller not found. Please check the connection.")
 
 class MinimalSubscriber(Node):
 
