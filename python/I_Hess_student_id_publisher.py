@@ -14,6 +14,12 @@ from std_msgs.msg import String
 global score_counter
 score_counter = 0
 
+## if arm didnt connect, raise error
+try:
+    import xarm
+    arm = xarm.Controller('USB')
+except:
+    raise Exception("xArm controller not found. Please check the connection.")
 
 TARGET_IMAGE = Path(__file__).resolve().parents[1] / "images" / "archery_target2.png"
 
