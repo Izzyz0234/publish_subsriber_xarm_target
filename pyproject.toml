@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xarm_toolkit"
+version = "0.1.0"
+description = "Hardware-independent target and xArm controller adapters for ROS 2 demonstrations."
+requires-python = ">=3.10"
+dependencies = [
+    "xarm",
+    "hidapi",
+]
+
+[project.optional-dependencies]
+mock = ["pygame"]
+dev = ["pytest", "pdoc"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

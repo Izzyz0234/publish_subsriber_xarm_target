@@ -136,7 +136,14 @@ The current tests are also runnable directly with `python python/test.py`. The `
 
 ## API documentation
 
-This checkout does not contain the requested `xarm_toolkit` package, `ArmController`, `TargetSource`, or either target-source implementation, so `pdoc src/xarm_toolkit/` cannot be run against it. The existing public methods have not been comprehensively audited to the requested API-docstring standard. Do not treat generated API docs as available until those APIs are added.
+Generate the reference documentation from docstrings:
+
+```bash
+python -m pip install -e ".[mock,dev]"
+python -m pdoc --output-dir docs/api src/xarm_toolkit
+```
+
+The generated API reference is [docs/api/xarm_toolkit/](docs/api/xarm_toolkit/). It documents `ArmController`, `TargetSource`, `PygameTargetSource`, and `ARIPersonTracker`.
 
 ## Demo
 

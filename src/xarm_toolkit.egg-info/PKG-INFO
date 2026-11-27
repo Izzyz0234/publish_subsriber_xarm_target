@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: xarm_toolkit
+Version: 0.1.0
+Summary: Hardware-independent target and xArm controller adapters for ROS 2 demonstrations.
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: xarm
+Requires-Dist: hidapi
+Provides-Extra: mock
+Requires-Dist: pygame; extra == "mock"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pdoc; extra == "dev"
+Dynamic: license-file

@@ -14,14 +14,13 @@ from std_msgs.msg import String
 global score_counter
 score_counter = 0
 
-## if arm didnt connect, raise error
 try:
     import xarm
     arm = xarm.Controller('USB')
-except:
+except :
+#check if xarm.Controller('USB') works, if not raise error
     raise Exception("xArm controller not found. Please check the connection.")
-
-TARGET_IMAGE = Path(__file__).resolve().parents[1] / "images" / "archery_target2.png"
+    
 
 pygame.init()                                  # start pygame's internals
 screen = pygame.display.set_mode((800, 600))   # open an 800 × 600 window
@@ -29,7 +28,7 @@ screen = pygame.display.set_mode((800, 600))   # open an 800 × 600 window
 pygame.display.set_caption("Click a target")
 
 # Load and display the image
-image = pygame.image.load(str(TARGET_IMAGE)).convert_alpha()
+image = pygame.image.load("/home/webot/capstone_ws/src/publish_subsriber_xarm_target/images/archery_target2.png").convert_alpha()
 scaled_image = pygame.transform.scale(image, (600, 600))
 image_rect = image.get_rect(center=(320, 220))  # get the rectangle of the image and center it
 screen.blit(scaled_image, image_rect)

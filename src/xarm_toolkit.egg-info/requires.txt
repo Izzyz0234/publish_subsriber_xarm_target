@@ -1,0 +1,9 @@
+xarm
+hidapi
+
+[dev]
+pytest
+pdoc
+
+[mock]
+pygame
